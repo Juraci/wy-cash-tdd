@@ -9,7 +9,7 @@ class Dollar
     Dollar.new(amount * multiplier)
   end
 
-  def equals(dollar)
+  def equal?(dollar)
     amount == dollar.amount
   end
 end
