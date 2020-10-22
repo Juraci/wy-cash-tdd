@@ -2,7 +2,7 @@ require "dollar"
 
 RSpec.describe Dollar do
   describe "#times" do
-    it "returns a new object and preserves the original amount" do
+    it "returns a new object that compares to an object with the same value" do
       five = Dollar.new(5)
       expect(five.times(2)).to be_equal Dollar.new(10)
       expect(five.times(3)).to be_equal Dollar.new(15)
