@@ -10,4 +10,16 @@ RSpec.describe Dollar do
       expect(product.amount).to eq 15
     end
   end
+
+  describe "#equals" do
+    it "returns true when comparing 2 objects with the same value" do
+      five = Dollar.new(5)
+      expect(five.equals(Dollar.new(5))).to eq true
+    end
+
+    it "returns false when comparing 2 objects with the different value" do
+      five = Dollar.new(5)
+      expect(five.equals(Dollar.new(6))).to eq false
+    end
+  end
 end
