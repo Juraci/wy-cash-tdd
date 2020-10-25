@@ -1,4 +1,5 @@
 require 'money'
+require 'bank'
 
 RSpec.describe 'Multi-Currency integration' do
   describe '#times' do
@@ -41,10 +42,19 @@ RSpec.describe 'Multi-Currency integration' do
     end
   end
 
-  describe 'currency' do
+  describe '#currency' do
     it 'returns the correct currency' do
       expect(Money.dollar(1).currency).to eq 'USD'
       expect(Money.franc(1).currency).to eq 'CHF'
+    end
+  end
+
+  describe '#plus' do
+    it 'returns the correct result for the addition' do
+      sum = Money.dollar(5).plus(Money.dollar(5))
+      bank = Bank.new
+      reduced = bank.reduce(sum, 'USD')
+      expect(Money.dollar(10)).to be_equal reduced
     end
   end
 end
