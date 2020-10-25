@@ -1,22 +1,27 @@
 class Money
   class << self
     def dollar(amount)
-      Dollar.new(amount)
+      Money.new(amount, 'USD')
     end
 
     def franc(amount)
-      Franc.new(amount)
+      Money.new(amount, 'CHF')
     end
   end
 
-  attr_reader :amount
+  attr_reader :amount, :currency
 
-  def initialize(amount)
+  def initialize(amount, currency)
     @amount = amount
+    @currency = currency
   end
 
   def equal?(money)
     amount == money.amount &&
-      self.class == money.class
+      currency == money.currency
+  end
+
+  def times(multiplier)
+    Money.new(amount * multiplier, currency)
   end
 end
