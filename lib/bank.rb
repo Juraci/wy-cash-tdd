@@ -1,5 +1,5 @@
 class Bank
-  def reduce(expression, currency)
-    Money.dollar(10)
+  def reduce(expression, to)
+    expression.reduce(to)
   end
 end

@@ -50,11 +50,26 @@ RSpec.describe 'Multi-Currency integration' do
   end
 
   describe '#plus' do
+    let(:five) { Money.dollar(5) }
+    let(:bank) { Bank.new }
+
+    it 'the sum of two money objects returns a sum object' do
+      sum = five.plus(five)
+      expect(sum.augend).to be_equal five
+      expect(sum.addend).to be_equal five
+    end
+
     it 'returns the correct result for the addition' do
-      sum = Money.dollar(5).plus(Money.dollar(5))
-      bank = Bank.new
+      sum = five.plus(Money.dollar(3))
       reduced = bank.reduce(sum, 'USD')
-      expect(Money.dollar(10)).to be_equal reduced
+      expect(Money.dollar(8)).to be_equal reduced
+    end
+
+    context 'when bank receives money instead of an expression' do
+      it 'returns money' do
+        result = bank.reduce(Money.dollar(1), 'USD')
+        expect(Money.dollar(1)).to be_equal result
+      end
     end
   end
 end
