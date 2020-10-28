@@ -72,4 +72,13 @@ RSpec.describe 'Multi-Currency integration' do
       end
     end
   end
+
+  describe 'converting one currency into another' do
+    it 'returns the correct value based on the rate provided' do
+      bank = Bank.new
+      bank.add_rate('CHF', 'USD', 2)
+      result = bank.reduce(Money.franc(2), 'USD')
+      expect(Money.dollar(1)).to be_equal result
+    end
+  end
 end
