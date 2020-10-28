@@ -2,7 +2,7 @@ require 'money'
 require 'bank'
 
 RSpec.describe 'Multi-Currency integration' do
-  describe '#times' do
+  describe 'multiplication' do
     it 'returns a new object that compares to an object with the same value' do
       five = Money.dollar(5)
       expect(five.times(2)).to be_equal Money.dollar(10)
@@ -16,7 +16,7 @@ RSpec.describe 'Multi-Currency integration' do
     end
   end
 
-  describe '#equals' do
+  describe 'checking equality' do
     it 'returns false when comparing 2 objects with the same value from different currencies' do
       expect(Money.dollar(5)).not_to be_equal Money.franc(5)
     end
@@ -42,14 +42,14 @@ RSpec.describe 'Multi-Currency integration' do
     end
   end
 
-  describe '#currency' do
+  describe 'checking currency' do
     it 'returns the correct currency' do
       expect(Money.dollar(1).currency).to eq 'USD'
       expect(Money.franc(1).currency).to eq 'CHF'
     end
   end
 
-  describe '#plus' do
+  describe 'addition' do
     let(:five) { Money.dollar(5) }
     let(:bank) { Bank.new }
 
