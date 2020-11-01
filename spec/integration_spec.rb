@@ -81,4 +81,10 @@ RSpec.describe 'Multi-Currency integration' do
       expect(Money.dollar(1)).to be_equal result
     end
   end
+
+  describe 'when the two currencies are the same' do
+    it 'returns 1' do
+      expect(Bank.new.rate('USD', 'USD')).to eq 1
+    end
+  end
 end
