@@ -72,7 +72,7 @@ RSpec.describe 'Multi-Currency integration' do
       end
     end
 
-    context 'when addong two different currencties' do
+    context 'when adding two different currencties' do
       it 'returns the value based on the rate' do
         five_bucks = Money.dollar(5)
         ten_francs = Money.franc(10)
