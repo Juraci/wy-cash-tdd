@@ -85,6 +85,20 @@ RSpec.describe 'Multi-Currency integration' do
     end
   end
 
+  describe 'multiplication' do
+    let(:five_bucks) { Money.dollar(5) }
+    let(:ten_francs) { Money.franc(10) }
+    let(:bank) { Bank.new }
+
+    it 'returns the correct value  multiplied' do
+      bank.add_rate('CHF', 'USD', 2)
+
+      sum = Sum.new(five_bucks, ten_francs).times(2)
+      result = bank.reduce(sum, "USD")
+      expect(result).to be_equal Money.dollar(20)
+    end
+  end
+
   describe 'converting one currency into another' do
     it 'returns the correct value based on the rate provided' do
       bank = Bank.new
