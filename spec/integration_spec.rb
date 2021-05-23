@@ -78,8 +78,9 @@ RSpec.describe 'Multi-Currency integration' do
         ten_francs = Money.franc(10)
         bank.add_rate('CHF', 'USD', 2)
 
-        result = bank.reduce(five_bucks.plus(ten_francs), 'USD')
-        expect(result).to be_equal Money.dollar(10)
+        sum = Sum.new(five_bucks, ten_francs).plus(five_bucks)
+        result = bank.reduce(sum, "USD")
+        expect(result).to be_equal Money.dollar(15)
       end
     end
   end
